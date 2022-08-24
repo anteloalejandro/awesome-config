@@ -420,11 +420,22 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
 
--- Add titlebar if client if client is floating
+-- Add titlebar if client if client is floating and restore geometry
+local function save_geometry(c)
+    c.last_geometry = c:geometry()
+end
+
+local function restore_geometry(c)
+    c:geometry(c.last_geometry)
+end
+
 client.connect_signal("property::floating", function(c)
     if c.floating then
+        restore_geometry(c)
+        save_geometry(c)
         awful.titlebar.show(c)
     else
+        save_geometry(c)
         awful.titlebar.hide(c)
     end
 end)
