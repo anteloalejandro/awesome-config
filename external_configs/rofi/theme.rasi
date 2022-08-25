@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Rofi color theme
+   Author: bardisty <b@bah.im>
+   Source: https://github.com/bardisty/gruvbox-rofi
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+    font: "Ubuntu Mono Bold 14";
+
+    /* Gruvbox dark colors */
+    dark-bg0:          #1e1e1e;
+    dark-bg0-soft:     @dark-bg0;
+    dark-bg1:          #303030;
+    dark-fg0:          #eeeeee;
+    dark-fg1:          #aaaaaa;
+    urgent-bg0:        #cc241d;
+    urgent-bg1:        #fb4934;
+    highlight-bg0:     #ffc24b;
+    highlight-bg1:     #CAD074;
+    hint-color:        #b3deef;
+
+    /* Theme colors */
+    background:                  @dark-bg0;
+    background-color:            @background;
+    foreground:                  @dark-fg1;
+    border-color:                @hint-color;
+    separatorcolor:              @dark-bg0;
+    scrollbar-handle:            @dark-bg1;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @dark-bg0-soft;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @dark-bg1;
+    selected-normal-foreground:  @dark-fg0;
+
+    active-background:           @highlight-bg0;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @highlight-bg1;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @urgent-bg0;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @urgent-bg1;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+
+@import "base.rasi"
+
+

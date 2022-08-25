@@ -1,15 +1,7 @@
 configuration {
     modi: "drun,run,window";
-    // Fondo impar, letra, fondo par, fondo resalte, color texto
-    color-normal: "#1E2127, #919ba0, #1E2127, #abb2bf, #1E2127";
-    // Fondo, borde, separadores
-    color-window: "#1E2127, #919ba0, #1E2127";
-    font: "Ubuntu 12";
-    // The display name of this browser
     display-run:                    "";
-    // The display name of this browser
     display-drun:                   "";
-    // The display name of this browser
     display-window:                 "";
     show-icons: true;
 
@@ -28,4 +20,4 @@ configuration {
 		/*  me-accept-custom: "Control+MouseDPrimary";*/ 
 }
 
-@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+@theme "theme.rasi"
