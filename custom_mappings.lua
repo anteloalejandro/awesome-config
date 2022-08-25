@@ -22,6 +22,7 @@ local terminal = custom_settings.apps.terminal
 local editor = custom_settings.apps.editor
 local editor_cmd = terminal .. " -e " .. editor
 local browser = custom_settings.apps.browser
+local file_manager = custom_settings.apps.file_manager
 
 custom_mappings.globalkeys = gears.table.join(
 
@@ -76,6 +77,8 @@ awful.key({ modkey, "Control" }, "r", awesome.restart,
 {description = "reload awesome", group = "awesome"}),
 awful.key({ modkey, "Shift" }, "q", awesome.quit,
 {description = "quit awesome", group = "awesome"}),
+awful.key({ modkey }, "f", function () awful.spawn(file_manager) end,
+{description = "launch file explorer", group = "awesome"}),
 
 awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.05) end,
 {description = "increase master width factor", group = "layout"}),
@@ -112,6 +115,8 @@ end,
 
 -- Prompt
 awful.key({ modkey }, "space", function() awful.util.spawn("rofi -show drun -sidebar-mode") end,
+{description = "run prompt", group = "launcher"}),
+awful.key({ "Mod1" }, "Tab", function() awful.util.spawn("rofi -show window -sidebar-mode") end,
 {description = "run prompt", group = "launcher"}),
 
 awful.key({ modkey }, "x",

@@ -7,7 +7,7 @@ local custom_settings = {
     file_manager="pcmanfm"
   },
 
-  wallpaper="./wallpapers/linux-gruv-light.svg"
+  wallpaper="./wallpapers/dark-material.jpg"
 
 }
 return custom_settings
