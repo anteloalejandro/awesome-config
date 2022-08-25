@@ -4,8 +4,10 @@ local custom_settings = {
     terminal="alacritty",
     editor="nvim",
     browser="firefox",
-    wallpaper=""
+    file_manager="pcmanfm"
   },
+
+  wallpaper="./wallpapers/linux-gruv-light.svg"
 
 }
 return custom_settings
