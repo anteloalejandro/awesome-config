@@ -37,12 +37,12 @@
     selected-normal-background:  @dark-bg1;
     selected-normal-foreground:  @dark-fg0;
 
-    active-background:           @highlight-bg0;
-    active-foreground:           @background;
+    active-background:           @background;
+    active-foreground:           @foreground;
     alternate-active-background: @active-background;
     alternate-active-foreground: @active-foreground;
-    selected-active-background:  @highlight-bg1;
-    selected-active-foreground:  @active-foreground;
+    selected-active-background:  @selected-normal-background;
+    selected-active-foreground:  @selected-normal-foreground;
 
     urgent-background:           @urgent-bg0;
     urgent-foreground:           @background;

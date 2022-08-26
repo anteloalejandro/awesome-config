@@ -2,11 +2,14 @@
    Author: bardisty <b@bah.im>
    Source: https://github.com/bardisty/gruvbox-rofi
    ========================================================================== */
+* {
+    padding: 3;
+}
 
 window {
     background-color: @background;
     border:           3;
-    padding:          2;
+    padding:          10;
     width: 28em;
     height: 21em;
 }
@@ -23,7 +26,7 @@ message {
 }
 
 textbox {
-    highlight:  @highlight;
+    highlight:  @dark-bg1;
     text-color: @foreground;
 }
 
@@ -37,7 +40,7 @@ listview {
 
 element {
     border:  0;
-    padding: 2px;
+    padding: 0.5em;
 }
 
 element.normal.normal {
@@ -53,6 +56,8 @@ element.normal.urgent {
 element.normal.active {
     background-color: @active-background;
     text-color:       @active-foreground;
+    border: 1px;
+    border-color: @hint-color;
 }
 
 element.selected.normal {
@@ -68,6 +73,8 @@ element.selected.urgent {
 element.selected.active {
     background-color: @selected-active-background;
     text-color:       @selected-active-foreground;
+    border: 1px;
+    border-color: @hint-color;
 }
 
 element.alternate.normal {
@@ -90,7 +97,7 @@ scrollbar {
     border:       0;
     handle-color: @scrollbar-handle;
     handle-width: 8px;
-    padding:      0;
+    padding:      0 0 0 5;
 }
 
 mode-switcher {
@@ -110,12 +117,12 @@ entry,
 prompt,
 button {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @hint-color;
 }
 
 button.selected {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
+    background-color: @hint-color;
+    text-color:       @background;
 }
 
 textbox-prompt-sep {
