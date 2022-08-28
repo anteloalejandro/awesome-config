@@ -149,7 +149,11 @@ awful.key({ modkey }, "y", function ()
   end
   floaty = not floaty
 end,
-{description = "(WIP) toggle floating layout", group="layout" })
+{description = "(WIP) toggle floating layout", group="layout" }),
+awful.key({modkey, "Shift"}, "r", function ()
+  awful.spawn.with_shell("Xephyr :5 & sleep 1; DISPLAY=:5 awesome" ) 
+end,
+{description = "Test awesome configuration on Xephyr"})
 --]]
 )
 
