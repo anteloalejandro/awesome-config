@@ -2,7 +2,6 @@ local vars = require("main.user-variables")
 local modkey = "Mod4"
 local gears = require("gears")
 local awful = require("awful")
-local client = awful.client
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menu = require("main.menu")
