@@ -1,9 +1,11 @@
 local gears = require("gears")
 local awful = require("awful")
+local menu = require("main.menu")
 local modkey = require("main.user-variables").modkey
-return {
-  gears.table.join(
+local clientbuttons = {}
+clientbuttons = gears.table.join(
   awful.button({ }, 1, function (c)
+    menu.mymainmenu:hide()
     c:emit_signal("request::activate", "mouse_click", {raise = true})
   end),
   awful.button({ modkey }, 1, function (c)
@@ -16,4 +18,4 @@ return {
   end)
   )
 
-}
+return clientbuttons
