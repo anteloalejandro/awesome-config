@@ -50,4 +50,5 @@ awful.rules.rules = require("main.rules")
 -- Signals
 require("main.signals")
 
+-- Start compositor
 awful.spawn.with_shell(vars.compositor)

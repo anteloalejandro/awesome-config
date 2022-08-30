@@ -6,8 +6,6 @@ local globalbuttons = {}
 globalbuttons = gears.table.join(
 awful.button({ }, 3, function () menu.mymainmenu:toggle() end),
 awful.button({ }, 1, function () menu.mymainmenu:hide() end)
--- awful.button({ }, 5, awful.tag.viewnext),
--- awful.button({ }, 4, awful.tag.viewprev)
 )
 
 return globalbuttons

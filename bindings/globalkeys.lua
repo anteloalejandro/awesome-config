@@ -1,5 +1,5 @@
 local vars = require("main.user-variables")
-local modkey = "Mod4"
+local modkey = vars.modkey
 local gears = require("gears")
 local awful = require("awful")
 local menubar = require("menubar")
@@ -151,15 +151,14 @@ end,
 awful.key({ modkey }, "p", function() menubar.show() end,
 {description = "show the menubar", group = "launcher"}),
 
--- Custom
----[[
+-- Rofi
 awful.key({ modkey }, "space", function() awful.util.spawn("rofi -show drun -sidebar-mode") end,
 {description = "run prompt", group = "launcher"}),
 
 awful.key({ "Mod1" }, "Tab", function() awful.util.spawn("rofi -show window -sidebar-mode") end,
 {description = "run prompt", group = "launcher"}),
 
--- Not working properly
+-- Not working properly, floating layout
 awful.key({ modkey }, "y", function ()
   if floaty then
     awful.layout.layouts = {awful.layout.suit.floating}
@@ -171,7 +170,6 @@ awful.key({ modkey }, "y", function ()
   floaty = not floaty
 end,
 {description = "(WIP) toggle floating layout", group="layout" })
---]]
 )
 
 -- Bind to tags

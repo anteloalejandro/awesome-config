@@ -21,12 +21,14 @@ client.connect_signal("request::titlebars", function(c)
     awful.titlebar.widget.iconwidget(c),
     buttons = buttons,
     layout  = wibox.layout.fixed.horizontal },
+
     { -- Middle
     { -- Title
     align  = "center",
     widget = awful.titlebar.widget.titlewidget(c) },
     buttons = buttons,
     layout  = wibox.layout.flex.horizontal },
+
     { -- Right
     awful.titlebar.widget.floatingbutton (c),
     awful.titlebar.widget.maximizedbutton(c),

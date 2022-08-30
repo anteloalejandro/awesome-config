@@ -8,6 +8,7 @@ local decos = {
   taglist = require("decos.taglist"),
   tasklist = require("decos.tasklist")
 }
+
 -- Keyboard map indicator and switcher
 local mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -56,7 +57,9 @@ awful.screen.connect_for_each_screen(function (s)
     menu.mylauncher,
     s.mytaglist,
     s.mypromptbox, },
+
     s.mytasklist, -- Middle widget
+
     { -- Right widgets
     layout = wibox.layout.fixed.horizontal,
     mykeyboardlayout,
