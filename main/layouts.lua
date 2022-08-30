@@ -1,6 +1,5 @@
 local layout = require("awful.layout.suit")
 return {
-  -- layout.floating,
   layout.tile,
   -- layout.tile.left,
   layout.tile.bottom,
@@ -16,4 +15,5 @@ return {
   -- layout.corner.ne,
   -- layout.corner.sw,
   -- layout.corner.se,
+  layout.floating,
 }

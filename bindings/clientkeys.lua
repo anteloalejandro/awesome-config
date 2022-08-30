@@ -16,7 +16,10 @@ awful.key({ modkey, }, "q", function (c) c:kill() end,
 {description = "close", group = "client"}),
 
 awful.key({ modkey, }, "g", function (c)
-  c.floating = not c.floating
+  -- Disable keybinding while using the floating layout
+  if not (awful.layout.getname() == "floating") then
+    c.floating = not c.floating
+  end
 end,
 {description = "toggle floating", group = "client"}),
 
@@ -40,7 +43,6 @@ end ,
 awful.key({ modkey, }, "m",
 function (c)
   c.maximized = not c.maximized
-  c:raise()
   if c.floating then
     c:geometry(c.last_geometry)
   else

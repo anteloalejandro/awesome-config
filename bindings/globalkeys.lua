@@ -6,7 +6,6 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menu = require("main.menu")
 
-local floaty = true
 local terminal = vars.apps.terminal
 local editor = vars.apps.editor
 local editor_cmd = terminal .. " -e " .. editor
@@ -55,8 +54,8 @@ awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1
 awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
 {description = "focus the previous screen", group = "screen"}),
 
-awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
-{description = "jump to urgent client", group = "client"}),
+-- awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
+-- {description = "jump to urgent client", group = "client"}),
 
 awful.key({ modkey, }, "Tab",
 function ()
@@ -120,7 +119,13 @@ awful.key({ modkey, "Control" }, "h", function () awful.tag.incncol( 1, nil, tru
 awful.key({ modkey, "Control" }, "l", function () awful.tag.incncol(-1, nil, true) end,
 {description = "decrease the number of columns", group = "layout"}),
 
-awful.key({ modkey, }, "u", function () awful.layout.inc( 1) end,
+awful.key({ modkey, }, "u", function ()
+  if awful.layout.getname() == "tilebottom" then
+    awful.layout.set(awful.layout.suit.tile)
+  else
+    awful.layout.set(awful.layout.suit.tile.bottom)
+  end
+end,
 {description = "select next", group = "layout"}),
 
 awful.key({ modkey, "Control" }, "n",
@@ -158,18 +163,26 @@ awful.key({ modkey }, "space", function() awful.util.spawn("rofi -show drun -sid
 awful.key({ "Mod1" }, "Tab", function() awful.util.spawn("rofi -show window -sidebar-mode") end,
 {description = "run prompt", group = "launcher"}),
 
--- Not working properly, floating layout
+-- Toggle floating layout
 awful.key({ modkey }, "y", function ()
-  if floaty then
-    awful.layout.layouts = {awful.layout.suit.floating}
-    awful.layout.set(awful.layout.suit.floating)
+  if awful.layout.getname() == "floating" then
+    for _, c in ipairs(client.get()) do
+      if not c.floating then
+        awful.titlebar.hide(c)
+      end
+      c.last_geometry = c:geometry()
+    end
+    awful.layout.set(awful.layout.lastlayout)
   else
-    awful.layout.layouts = {awful.layout.suit.tile, awful.layout.suit.tile.bottom}
-    awful.layout.set(awful.layout.suit.tile)
+    awful.layout.lastlayout = awful.layout.get()
+    awful.layout.set(awful.layout.suit.floating)
+    for _, c in ipairs(client.get()) do
+      c:geometry(c.last_geometry)
+      awful.titlebar.show(c)
+    end
   end
-  floaty = not floaty
 end,
-{description = "(WIP) toggle floating layout", group="layout" })
+{description = "toggle floating layout", group="layout" })
 )
 
 -- Bind to tags
