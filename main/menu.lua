@@ -10,9 +10,6 @@ local editor_cmd = terminal .. " -e " .. editor
 local m = {}
 
 m.myawesomemenu = {
-
-  { "hotkeys", function() awful.hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "manual", terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
   { "restart", awesome.restart },
   { "quit", function() awesome.quit() end },
