@@ -1,7 +1,6 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-local vars = require("main.user-variables")
 local custom_mappings = require("custom_mappings")
 
 -- Standard awesome library
@@ -20,33 +19,40 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local vars = require("main.user-variables")
+
 -- Error handling
 require("main.error-handling")
 
 --  Variable definitions
--- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+beautiful.wallpaper = vars.wallpaper
 
--- This is used later as the default terminal and editor to run.
+local main = {
+  layouts = require("main.layouts"),
+  tags = require("main.tags"),
+  menu = require("main.menu"),
+  rules = require("main.rules")
+}
+
+local bindings = {
+  globalbuttons = require("bindings.globalbuttons"),
+  clientbuttons = require("bindings.clientbuttons"),
+  globalkeys = require("bindings.globalkeys"),
+  clientkeys = require("bindings.clientkeys"),
+  bindtotags = require("bindings.bindtotags")
+}
+
 local terminal = vars.apps.terminal
 local editor = vars.apps.editor
 local editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-local modkey = vars.modkey
+modkey = vars.modkey
 
--- Table of layouts to cover with awful.layout.inc, order matters.
--- 
--- 
 -- Layouts
-awful.layout.layouts = require("main.layouts")
+awful.layout.layouts = main.layouts
 
 -- Menu
-require("main.menu")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -103,7 +109,7 @@ local function set_wallpaper(s)
     if type(wallpaper) == "function" then
       wallpaper = wallpaper(s)
     end
-    gears.wallpaper.maximized(wallpaper, s, true)
+    gears.wallpaper.maximized(wallpaper, s, false)
   end
 end
 
@@ -113,9 +119,6 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
-
-  -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -149,7 +152,7 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
     layout = wibox.layout.fixed.horizontal,
-    mylauncher,
+    main.menu.mylauncher,
     s.mytaglist,
     s.mypromptbox,
   },
@@ -165,7 +168,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-awful.button({ }, 3, function () mymainmenu:toggle() end),
+awful.button({ }, 3, function () main.menu.mymainmenu:toggle() end),
 awful.button({ }, 4, awful.tag.viewnext),
 awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -244,10 +247,9 @@ end)
 root.keys(globalkeys)
 
 -- Rules
-require("main.rules")
+awful.rules.rules = main.rules
 
 -- Signals
 require("main.signals")
 
-awful.spawn.with_shell("picom")
-gears.wallpaper.maximized(vars.wallpaper, nil, false)
+awful.spawn.with_shell(vars.compositor)

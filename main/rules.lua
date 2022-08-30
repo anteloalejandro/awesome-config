@@ -1,6 +1,10 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-awful.rules.rules = {
+local clientbuttons = require("bindings.clientbuttons")
+local clientkeys = require("bindings.clientkeys")
+
+local rules = {}
+rules = {
   -- All clients will match this rule.
   { rule = { },
   properties = { border_width = beautiful.border_width,
@@ -54,3 +58,4 @@ awful.rules.rules = {
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
 }
+return rules

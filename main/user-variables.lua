@@ -9,6 +9,8 @@ return {
 
   modkey = "Mod4",
 
-  wallpaper="./wallpapers/dark-material.jpg"
+  wallpaper="./wallpapers/dark-material.jpg",
+
+  compositor="picom"
 
 }

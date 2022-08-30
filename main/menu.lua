@@ -7,19 +7,22 @@ local terminal = apps.terminal
 local editor = apps.editor
 local editor_cmd = terminal .. " -e " .. editor
 
-local myawesomemenu = {
+local m = {}
 
-  { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+m.myawesomemenu = {
+
+  { "hotkeys", function() awful.hotkeys_popup.show_help(nil, awful.screen.focused()) end },
   { "manual", terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
   { "restart", awesome.restart },
   { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon }, { "open terminal", terminal } } })
+m.mymainmenu = awful.menu({ items = { { "awesome", m.myawesomemenu, beautiful.awesome_icon }, { "open terminal", terminal } } })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-menu = mymainmenu })
+m.mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+menu = m.mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+return m
