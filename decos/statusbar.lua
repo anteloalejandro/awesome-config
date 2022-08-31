@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local menu = require("main.menu")
+local calendar_widget = require("widgets.calendar-widget.calendar")
 
 local decos = {
   wallpaper = require("decos.wallpaper"),
@@ -14,6 +15,16 @@ local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
+local cw = calendar_widget({
+  placement = "top_right",
+  start_sunday = false,
+  radius = 5
+})
+mytextclock:connect_signal("button::press",
+function (_, _, _, button)
+  if button == 1 then cw.toggle() end
+end
+)
 
 awful.screen.connect_for_each_screen(function (s)
   -- Wallpaper
