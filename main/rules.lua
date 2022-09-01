@@ -2,6 +2,8 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local clientbuttons = require("bindings.clientbuttons")
 local clientkeys = require("bindings.clientkeys")
+local gears = require("gears")
+local floating_apps = require("main.user-variables").floating_apps
 
 local rules = {}
 rules = {
@@ -38,11 +40,9 @@ rules = {
 
     -- Note that the name property shown in xprop might be set slightly after creation of the client
     -- and the name shown there might not match defined rules here.
-    name = {
+    name = gears.table.join({
       "Event Tester",  -- xev.
-      "Execute File",
-      "Color Picker"
-    },
+    }, floating_apps),
     role = {
       "AlarmWindow",  -- Thunderbird's calendar.
       "ConfigManager",  -- Thunderbird's about:config.
