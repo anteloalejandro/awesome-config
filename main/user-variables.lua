@@ -12,6 +12,8 @@ return {
   floating_apps = {
       "Execute File",
       "Color Picker",
+      "mpv",
+      "feh"
   },
 
   modkey = "Mod4",

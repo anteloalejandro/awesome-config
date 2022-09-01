@@ -11,6 +11,9 @@ client.connect_signal("manage", function (c)
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
+  if awful.layout.getname() == "floating" then
+    awful.titlebar.show(c)
+  end
 end)
 
 -- Add titlebar if client if client is floating and restore geometry
@@ -20,13 +23,17 @@ client.connect_signal("property::floating", function(c)
     awful.titlebar.show(c)
   else
     c.last_geometry = c:geometry()
-    awful.titlebar.hide(c)
+    if awful.layout.getname() == "floating" then
+      awful.titlebar.show(c)
+    else
+      awful.titlebar.hide(c)
+    end
   end
 end)
 
 client.connect_signal("property::maximized", function (c)
   c:raise()
-  if c.floating and not c.maximized then
+  if not c.maximized then
     c.last_geometry = c:geometry()
   end
 end
