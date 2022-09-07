@@ -11,7 +11,7 @@ local decos = {
 }
 
 -- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
+-- local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
@@ -73,7 +73,6 @@ awful.screen.connect_for_each_screen(function (s)
 
     { -- Right widgets
     layout = wibox.layout.fixed.horizontal,
-    mykeyboardlayout,
     wibox.widget.systray(),
     mytextclock,
     s.mylayoutbox, }
