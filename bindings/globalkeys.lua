@@ -1,4 +1,4 @@
-local vars = require("main.user-variables")
+local vars = require("settings")
 local modkey = vars.modkey
 local gears = require("gears")
 local awful = require("awful")

@@ -6,7 +6,7 @@ local beautiful = require("beautiful")
 require("awful.autofocus")
 require("awful.hotkeys_popup.keys")
 
-local vars = require("main.user-variables")
+local vars = require("settings")
 
 -- Error handling
 require("main.error-handling")

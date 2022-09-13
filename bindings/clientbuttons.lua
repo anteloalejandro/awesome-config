@@ -1,7 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local menu = require("main.menu")
-local modkey = require("main.user-variables").modkey
+local modkey = require("settings").modkey
 
 local clientbuttons = {}
 clientbuttons = gears.table.join(
