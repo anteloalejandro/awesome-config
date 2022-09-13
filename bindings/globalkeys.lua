@@ -166,20 +166,10 @@ awful.key({ "Mod1" }, "Tab", function() awful.util.spawn("rofi -show window -sid
 -- Toggle floating layout
 awful.key({ modkey }, "y", function ()
   if awful.layout.getname() == "floating" then
-    for _, c in ipairs(client.get()) do
-      if not c.floating then
-        awful.titlebar.hide(c)
-      end
-      c.last_geometry = c:geometry()
-    end
     awful.layout.set(awful.layout.lastlayout)
   else
     awful.layout.lastlayout = awful.layout.get()
     awful.layout.set(awful.layout.suit.floating)
-    for _, c in ipairs(client.get()) do
-      c:geometry(c.last_geometry)
-      awful.titlebar.show(c)
-    end
   end
 end,
 {description = "toggle floating layout", group="layout" })

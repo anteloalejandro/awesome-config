@@ -43,11 +43,7 @@ end ,
 awful.key({ modkey, }, "m",
 function (c)
   c.maximized = not c.maximized
-  if c.floating then
-    c:geometry(c.last_geometry)
-  else
-    c.last_geometry = c:geometry()
-  end
+  c:raise()
 end ,
 {description = "(un)maximize", group = "client"}),
 
