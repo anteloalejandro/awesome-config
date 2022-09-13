@@ -3,6 +3,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local menu = require("main.menu")
 local calendar_widget = require("widgets.calendar-widget.calendar")
+local vicious = require("vicious")
 
 local decos = {
   wallpaper = require("decos.wallpaper"),
@@ -25,6 +26,12 @@ function (_, _, _, button)
   if button == 1 then cw.toggle() end
 end
 )
+
+-- Create a simple wifi widget with vicious
+local wifi = require("widgets.wifi")
+
+-- Create a simple volume widget with vicious
+local volume = require("widgets.volume")
 
 awful.screen.connect_for_each_screen(function (s)
   -- Wallpaper
@@ -74,6 +81,8 @@ awful.screen.connect_for_each_screen(function (s)
     { -- Right widgets
     layout = wibox.layout.fixed.horizontal,
     wibox.widget.systray(),
+    volume,
+    wifi,
     mytextclock,
     s.mylayoutbox, }
   }
