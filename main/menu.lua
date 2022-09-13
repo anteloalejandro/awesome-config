@@ -1,7 +1,7 @@
 local awful = require("awful")
 local menubar = require("menubar")
 local beautiful = require("beautiful")
-local apps = require("main.user-variables").apps
+local apps = require("settings").apps
 
 local terminal = apps.terminal
 local editor = apps.editor

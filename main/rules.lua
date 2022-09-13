@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 local clientbuttons = require("bindings.clientbuttons")
 local clientkeys = require("bindings.clientkeys")
 local gears = require("gears")
-local floating_apps = require("main.user-variables").floating_apps
+local floating_apps = require("settings").floating_apps
 
 local rules = {}
 rules = {

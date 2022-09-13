@@ -5,7 +5,7 @@
 - `rofi`
 
 ## Recommended packages
-These are packages that are not required but are used by default. You may have to change the default settings ( located at `main/user-variables`) to make this configuration work correctly if you do not want to install them.
+These are packages that are not required but are used by default. You may have to change the default settings ( located at `settings`) to make this configuration work correctly if you do not want to install them.
 
 - Compositor: `picom`
 - Web Browser: `firefox`
